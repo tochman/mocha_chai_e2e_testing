@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test && npm run stop-test-server",
+    "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test && PORT=8080 npm run stop-test-server ",
     "server": "superstatic src -p 3000",
-    "stop-test-server": "lsof -ti tcp:8080 | xargs kill"
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
   "author": "",
   "license": "ISC",
