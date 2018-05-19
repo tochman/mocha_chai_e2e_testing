@@ -4,17 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "http-server src | mocha test/configuration.js --recursive test",
-    "server": "http-server src"
+    "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test | mocha --exit | kill -9 `lsof -i TCP:8080 | awk '/LISTEN/{print $2}'`",
+    "server": "superstatic src -p 3000"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
-    "http-server": "^0.11.1",
-    "lodash": "^4.17.10"
-  },
-  "dependencies": {
+    "superstatic": "^5.0.1",
+    "lodash": "^4.17.10",
     "mocha": "^5.2.0",
     "puppeteer": "^1.4.0"
   }
