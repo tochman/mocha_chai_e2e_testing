@@ -1,1 +1,0 @@
-$_mod.run("/mocha_chai_e2e_testing$1.0.0/test/sample.spec");
