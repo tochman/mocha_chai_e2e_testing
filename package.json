@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test | mocha --exit | kill -9 `lsof -i TCP:8080 | awk '/LISTEN/{print $2}'`",
-    "server": "superstatic src -p 3000"
+    "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test && npm run stop-test-server",
+    "server": "superstatic src -p 3000",
+    "stop-test-server": "lsof -ti tcp:8080 | xargs kill"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +14,7 @@
     "chai": "^4.1.2",
     "superstatic": "^5.0.1",
     "lodash": "^4.17.10",
-    "mocha": "^5.2.0",
+    "mocha": "3.5.3",
     "puppeteer": "^1.4.0"
   }
 }
