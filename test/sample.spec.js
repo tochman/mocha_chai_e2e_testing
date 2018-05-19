@@ -31,5 +31,17 @@ describe('sample UI test', function () {
   
       expect(await page.$$(BODY_SELECTOR)).to.have.lengthOf(1);
     });
+
+    it('should display hello message', async function () {
+        const FORM_INPUT = "input[name='name']";
+        const BUTTON = "input[value='Click me']";
+        //await page.waitForSelector(FORM_INPUT);
+        this.inputElement = await page.$(FORM_INPUT);
+        this.button = await page.$(BUTTON);
+        await this.inputElement.type('Thomas');
+        await this.button.click();
+        let content = await page.$eval("div[id='output']", content => content.innerText);
+        expect(await page.$$("div[id='output']")).to.have.eql('Thomas');
+      });
   });
 
