@@ -1,0 +1,1 @@
+$_mod.run("/mocha-puppeteer$0.13.0/lib/pages/test-page/setup");

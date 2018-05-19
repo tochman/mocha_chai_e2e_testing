@@ -1,9 +1,9 @@
-describe('sample UI test', function () {
+$_mod.def("/mocha_chai_e2e_testing$1.0.0/test/sample.spec", function(require, exports, module, __filename, __dirname) { describe('sample UI test', function () {
     let page;
   
     before (async function () {
       page = await browser.newPage();
-      await page.goto('http://localhost:8080/');
+      await page.goto('http://localhost:9000/');
     });
   
     after (async function () {
@@ -33,3 +33,5 @@ describe('sample UI test', function () {
     });
   });
 
+
+});
