@@ -1,36 +1,40 @@
-describe('sample UI test', () => {
-    let page;
-  
-    before (async () => {
-      page = await browser.newPage();
-      await page.goto('http://localhost:8080/');
-    });
-  
-    after (async () => {
-      await page.close();
-    })
-  
-    it('should have the correct page title', async () => {
-      expect(await page.title()).to.eql('Puppeteer Mocha');
-    });
-  
-    it('should have a heading', async () => {
-      const HEADING_SELECTOR = 'h1';
-      let heading = await getContent(page, HEADING_SELECTOR);
-      expect(heading).to.eql('Page Title');
-    });
-  
-    it('should have a single content section', async () => {
-      const BODY_SELECTOR = '.main-content';
-      let element = await getElement(page, BODY_SELECTOR);
-      expect(element).to.have.lengthOf(1);
-    });
+const { expect } = require('chai');
 
-    it('should display hello message', async () => {
-        await fill_in(page, "input[name='name']", "Thomas")
-        await click(page, "input[value='Click me']")
-        let content = await getContent(page, "div[id='output']")
-        expect(content).to.eql('Hello Thomas');
-      });
+const BrowserHelpers = require('./configuration')
+const browser = new BrowserHelpers()
+
+describe('sample UI test', () => {
+  before(async () => {
+    await browser.init()
+    await browser.visitPage('http://localhost:8080/')
   });
+
+  after(async () => {
+    await browser.close()
+  })
+
+  it('should have the correct page title', async () => {
+    let page = browser.page
+    expect(await page.title()).to.eql('Puppeteer Mocha');
+  });
+
+  it('should have a heading', async () => {
+    const HEADING_SELECTOR = 'h1';
+    let heading = await browser.getContent(HEADING_SELECTOR);
+    expect(heading).to.eql('Page Title');
+  });
+
+  it('should have a single content section', async () => {
+    const BODY_SELECTOR = '.main-content';
+    let element = await browser.getElement(BODY_SELECTOR);
+    expect(element).to.have.lengthOf(1);
+  });
+
+  it('should display hello message', async () => {
+    await browser.fillIn("input[name='name']", "Thomas")
+    await browser.clickOnButton("input[value='Click me']")
+    let content = await browser.getContent("div[id='output']")
+    expect(content).to.eql('Hello Thomas');
+  });
+});
 
