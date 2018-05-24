@@ -52,12 +52,7 @@ class BrowserHelpers {
   }
 
   async selectOption(selector, options){
-    await this.page.waitForSelector(selector)
-    this.selectElement = await this.page.$(selector)
-    //await this.selectElement.click()
-    console.log(this.selectElement)
-    // this.setSelectedIndex(this.selectElement, options.with);  
-    // await selectElement.value('Saab');​​​​​​​​​​
+    await this.page.select(selector, options.with);
   }
 
   async takeSnapshot(filename){

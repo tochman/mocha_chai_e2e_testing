@@ -22,13 +22,18 @@
   <script>
       const form = document.getElementById('my-form');
       form.addEventListener("submit", event =>{
-          event.preventDefault();
-          let name = Array.from(form.elements).find(element => element.name === 'name').value;
-          var div = document.createElement('div');
-          div.textContent = `Hello ${name}`;
-          div.setAttribute('id', 'output');
-          document.body.appendChild(div);
+        event.preventDefault();
+        let name = Array.from(form.elements).find(element => element.name === 'name').value;
+        const carsSelector = document.getElementsByName('cars')[0]
+        const car = carsSelector.options[carsSelector.selectedIndex].text;
+        const div = document.createElement('div');
+        div.textContent = `Hello ${name}, you selected an ${car}`;
+        if (document.contains(document.getElementById("output"))) {
+            document.getElementById("output").remove();
+        }
+        div.setAttribute('id', 'output');
+        document.body.appendChild(div);
       });
-  </script>
+  </script> 
 </body>
 </html>

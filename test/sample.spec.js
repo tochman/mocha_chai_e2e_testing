@@ -9,12 +9,11 @@ describe('sample UI test', () => {
   });
 
   after(async () => {
-    await browser.close()
+    browser.close();
   })
 
   it('should have the correct page title', async () => {
-    let page = browser.page
-    expect(await page.title()).to.eql('Puppeteer Mocha');
+    expect(await browser.page.title()).to.eql('Puppeteer Mocha');
   });
 
   it('should have a heading', async () => {
@@ -33,15 +32,14 @@ describe('sample UI test', () => {
     await browser.fillIn("input[name='name']", {with: "Thomas"})
     await browser.clickOnButton("input[value='Click me']")
     let content = await browser.getContent("div[id='output']")
-    await browser.takeSnapshot();
-    expect(content).to.eql('Hello Thomas');
+    expect(content).to.eql('Hello Thomas, you selected an Volvo');
   });
 
   it('should display selected car', async () => {
-    await browser.selectOption("select[name='cars']", {with: 'Saab' })
-
+    await browser.fillIn("input[name='name']", {with: "Anders"})
+    await browser.selectOption("select[name='cars']", {with: 'saab' })
+    await browser.clickOnButton("input[value='Click me']")
     let content = await browser.getContent("div[id='output']")
-    expect(content).to.eql('Hello Thomas');
+    expect(content).to.eql('Hello Thomas, you selected an Saab');
   });
 });
-
