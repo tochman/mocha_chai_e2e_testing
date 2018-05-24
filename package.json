@@ -1,6 +1,6 @@
 {
   "name": "mocha_chai_e2e_testing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
   "main": "test/pupeteerHelpers.js",
   "scripts": {
