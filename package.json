@@ -9,7 +9,24 @@
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
-  "author": "",
+  "author": {
+    "name": "Thomas Ochman",
+    "email": "thomas@craftacademy.se",
+    "url": "https://github.com/tochman"
+  },
+  "homepage": "https://github.com/tochman/mocha_chai_e2e_testing",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tochman/mocha_chai_e2e_testing"
+  },
+  "keywords": [
+    "Puppeteer",
+    "E2E",
+    "Chai",
+    "Mocha",
+    "Acceptance tests",
+    "Testing"
+  ],
   "license": "MIT",
   "dependencies": {
     "chai": "^4.1.2",
