@@ -16,15 +16,14 @@ describe('sample UI test', () => {
   
     it('should have a heading', async () => {
       const HEADING_SELECTOR = 'h1';
-      let heading;
-      heading = await getContent(page, HEADING_SELECTOR)
+      let heading = await getContent(page, HEADING_SELECTOR);
       expect(heading).to.eql('Page Title');
     });
   
     it('should have a single content section', async () => {
       const BODY_SELECTOR = '.main-content';
-      await page.waitFor(BODY_SELECTOR);
-      expect(await page.$$(BODY_SELECTOR)).to.have.lengthOf(1);
+      let element = await getElement(page, BODY_SELECTOR);
+      expect(element).to.have.lengthOf(1);
     });
 
     it('should display hello message', async () => {

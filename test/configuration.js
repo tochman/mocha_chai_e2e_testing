@@ -15,8 +15,13 @@ const click = async (page, element) => {
 }
 
 const getContent = async (page, element) => {
-  const content = page.$eval(element, content => content.textContent);
-  return content;
+  const requestedContent = page.$eval(element, requestedContent => requestedContent.textContent);
+  return requestedContent;
+}
+
+const getElement = async (page, element) => {
+  const requestedElement = await page.$$(element)
+  return requestedElement;
 }
 
 // puppeteer options
@@ -33,6 +38,7 @@ before (async function () {
   global.fill_in = fill_in;
   global.click = click;
   global.getContent = getContent;
+  global.getElement = getElement;
 });
 
 // close browser and reset global variables
