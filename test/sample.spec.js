@@ -3,14 +3,18 @@ const BrowserHelpers = require('./pupeteerHelpers.js')
 const browser = new BrowserHelpers()
 
 describe('sample UI test', () => {
-  before(async () => {
+  before( async () => {
     await browser.init()
     await browser.visitPage('http://localhost:8080/')
   });
 
+  beforeEach(async ()=>{
+    await browser.page.reload();
+  });
+
   after(async () => {
-    browser.close();
-  })
+    await browser.close();
+  });
 
   it('should have the correct page title', async () => {
     expect(await browser.page.title()).to.eql('Puppeteer Mocha');
@@ -40,6 +44,6 @@ describe('sample UI test', () => {
     await browser.selectOption("select[name='cars']", {with: 'saab' })
     await browser.clickOnButton("input[value='Click me']")
     let content = await browser.getContent("div[id='output']")
-    expect(content).to.eql('Hello Thomas, you selected an Saab');
+    expect(content).to.eql('Hello Anders, you selected an Saab');
   });
 });

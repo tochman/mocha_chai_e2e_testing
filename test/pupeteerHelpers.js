@@ -55,8 +55,8 @@ class BrowserHelpers {
     await this.page.select(selector, options.with);
   }
 
-  async takeSnapshot(filename){
-    await this.page.screenshot({path: `${filename}.png`});
+  async takeScreenshot(){
+    await this.page.screenshot({path: 'screenshot.png'});
     return;
   }
 
