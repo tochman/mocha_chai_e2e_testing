@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Puppeteer Mocha</title>
+</head>
+<body>
+  <h1>Page Title</h1>
+  <p class='main-content'>Some paragraph text</p>
+
+  <form id="my-form" action="#">
+      <input type="text" placeholder="Name" name="name">
+      <input type="submit" value="Click me">
+  </form>
+
+  <script>
+      const form = document.getElementById('my-form');
+      form.addEventListener("submit", event =>{
+          event.preventDefault();
+          let name = Array.from(form.elements).find(element => element.name === 'name').value;
+          var div = document.createElement('div');
+          div.textContent = `Hello ${name}`;
+          div.setAttribute('id', 'output');
+          document.body.appendChild(div);
+      });
+  </script>
+</body>
+</html>
