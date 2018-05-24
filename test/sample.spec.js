@@ -1,6 +1,5 @@
 const { expect } = require('chai');
-
-const BrowserHelpers = require('./configuration')
+const BrowserHelpers = require('./pupeteerHelpers.js')
 const browser = new BrowserHelpers()
 
 describe('sample UI test', () => {
@@ -31,8 +30,16 @@ describe('sample UI test', () => {
   });
 
   it('should display hello message', async () => {
-    await browser.fillIn("input[name='name']", "Thomas")
+    await browser.fillIn("input[name='name']", {with: "Thomas"})
     await browser.clickOnButton("input[value='Click me']")
+    let content = await browser.getContent("div[id='output']")
+    await browser.takeSnapshot();
+    expect(content).to.eql('Hello Thomas');
+  });
+
+  it('should display selected car', async () => {
+    await browser.selectOption("select[name='cars']", {with: 'Saab' })
+
     let content = await browser.getContent("div[id='output']")
     expect(content).to.eql('Hello Thomas');
   });

@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-const { expect } = require('chai');
 
 class BrowserHelpers {
   constructor() { }
@@ -31,10 +30,10 @@ class BrowserHelpers {
     await this.browser.close()
   }
 
-  async fillIn(selector, content) {
+  async fillIn(selector, options) {
     await this.page.waitForSelector(selector)
     this.inputElement = await this.page.$(selector)
-    await this.inputElement.type(content)
+    await this.inputElement.type(options.with)
   }
 
   async clickOnButton(selector) {
@@ -51,6 +50,21 @@ class BrowserHelpers {
     const requestedElement = await this.page.$$(element)
     return requestedElement;
   }
+
+  async selectOption(selector, options){
+    await this.page.waitForSelector(selector)
+    this.selectElement = await this.page.$(selector)
+    //await this.selectElement.click()
+    console.log(this.selectElement)
+    // this.setSelectedIndex(this.selectElement, options.with);  
+    // await selectElement.value('Saab');​​​​​​​​​​
+  }
+
+  async takeSnapshot(filename){
+    await this.page.screenshot({path: `${filename}.png`});
+    return;
+  }
+
 }
 
 module.exports = BrowserHelpers

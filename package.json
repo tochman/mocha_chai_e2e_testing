@@ -14,7 +14,6 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "superstatic": "^5.0.1",
-    "lodash": "^4.17.10",
     "mocha": "3.5.3",
     "puppeteer": "^1.4.0"
   }
