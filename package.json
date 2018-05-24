@@ -1,8 +1,8 @@
 {
   "name": "mocha_chai_e2e_testing",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
+  "main": "test/pupeteerHelpers.js",
   "scripts": {
     "test": "superstatic src -p 8080 & mocha test/configuration.js --recursive test ; PORT=8080 npm run stop-test-server ",
     "test-d": "superstatic src -p 8080 & mocha test/configuration.js --recursive test --debug-brk  && PORT=8080 npm run stop-test-server ",
@@ -10,8 +10,8 @@
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "license": "MIT",
+  "dependencies": {
     "chai": "^4.1.2",
     "superstatic": "^5.0.1",
     "mocha": "3.5.3",
