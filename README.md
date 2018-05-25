@@ -21,19 +21,11 @@ Create a `features` folder in you project.
 $ mkdir features
 ```
 
-Create a Mocha configuration file in the `features` folder (`mocha.opts`).
-
-```
---timeout 100000
---recursive
---reporter spec
-```
-
 Add the following scripts to `package.json`:
 
 ```json
   "scripts": {
-    "test": "superstatic src -p 8080 & mocha --config features/mocha.opts features ; PORT=8080 npm run stop-test-server ",
+    "test": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server ",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   }

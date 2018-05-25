@@ -6,6 +6,7 @@ class BrowserHelpers {
   async init() {
     await this.newBrowser()
     await this.newPage()
+    await this.page.on('console', msg => console.log('PAGE LOG:', msg.text()));
   }
 
   async newBrowser() {
@@ -13,7 +14,9 @@ class BrowserHelpers {
       headless: false,
       slowMo: 50,
       timeout: 100000,
-      devtools: true
+      devtools: true,
+      args: ['--no-sandbox','--disable-setuid-sandbox', '--disable-popup-blocking', '--disable-infobars'],
+      ignoreHTTPSErrors: true,
     };
 
     this.browser = await puppeteer.launch(options)

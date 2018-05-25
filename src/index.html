@@ -27,7 +27,8 @@
         const carsSelector = document.getElementsByName('cars')[0]
         const car = carsSelector.options[carsSelector.selectedIndex].text;
         const div = document.createElement('div');
-        div.textContent = `Hello ${name}, you selected an ${car}`;
+        let message = `Hello ${name}, you selected an ${car}`
+        div.textContent = message;
         if (document.contains(document.getElementById("output"))) {
             document.getElementById("output").remove();
         }
