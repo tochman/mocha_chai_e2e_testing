@@ -1,23 +1,11 @@
 #### For educational purposes only
-# Mocha Chai Puppeteer Helpers
+# Acceptance Test Training Wheels
 
-This is a WIP project to be used in computer training sessions.
+The Training Wheels server 2 purposes. It provides a minimal test enviroment setup and a set of convinient helpers to be used in acceptance (end-2-end) tests. This package has been created to be used in computer training sessions.
 
-[TODO: Write instructions]
+The idea is to simplify the process of setting up a test enviroment with [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai) and [Puppeteer](https://www.npmjs.com/package/puppeteer). The package uses [Superstatic](https://www.npmjs.com/package/superstatic) as a local server. **Note: Tested on OSX but will probably work on Linux**
 
 ## Usage
-
-Add the following scripts to `package.json`:
-
-```json
-"scripts": {
-    "test": "superstatic src -p 8080 & mocha features --recursive test ; PORT=8080 npm run stop-test-server ",
-    "server": "superstatic src -p 3000",
-    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
-  }
-```
-
-This setup requires your code to reside in a forder called `src` and your tests in `features`.
 
 Create a `features` folder in you project. 
 
@@ -25,11 +13,33 @@ Create a `features` folder in you project.
 $ mkdir features
 ```
 
+Create a Mocha configuration file in the `features` folder (`mocha.opts`).
+
+```
+--timeout 100000
+--recursive
+--reporter spec
+```
+
+Add the following scripts to `package.json`:
+
+```json
+"scripts": {
+    "test": "superstatic src -p 8080 & mocha test/configuration.js --config features/mocha.opts test ; PORT=8080 npm run stop-test-server ",
+    "server": "superstatic src -p 3000",
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
+  }
+```
+
+This setup requires your code to reside in a forder called `src` and your tests in `features`.
+
+
+
 Create a test file: `$ touch index.feature.js` and use the following setup:
 
 ```javascript
 const { expect } = require('chai');
-const BrowserHelpers = require('mocha_chai_e2e_testing')
+const BrowserHelpers = require('e2e_training_wheels')
 const browser = new BrowserHelpers()
 
 describe('sample UI test', () => {
@@ -60,5 +70,54 @@ describe('sample UI test', () => {
 * `browser.clickOnButton()`
 * `browser.getElement()`
 * `browser.selectOption()`
+* `browser.debugTheCode()`
+
+## Examples
+
+### `fillIn`
+
+Allows you to fill in an input field with a value. Takes 2 arguments to identify the element and pass in the value to set.
+
+Identifing an input field by `id`:
+
+```javascript
+await browser.fillIn("input[id='the-id']", {with: "Whatever value"})
+```
+
+Identifing an input field by `name`:
+
+```javascript
+await browser.fillIn("input[name='the-name']", {with: "Whatever value"})
+```
+
+### `getContent`
+
+Allows you to get the text value of an element. 
+
+[ToDo: Write instructions]
+
+### `clickOnButton`
+
+Allows you to click on a button or link
+[ToDo: Write instructions]
 
 
+### `selectOption`
+
+Allows you to select an option from a select tag
+[ToDo: Write instructions]
+
+## Debugging
+
+Set breakpoint in tests:
+
+```javascript
+await browser.debugTheCode();
+```
+
+
+Set breakpoint in code:
+
+```javascript
+debugger;
+```

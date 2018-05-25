@@ -39,7 +39,7 @@ describe('sample UI test', () => {
     expect(content).to.eql('Hello Thomas, you selected an Volvo');
   });
 
-  it('should display selected car', async () => {
+  it('should display selected car in message', async () => {
     await browser.fillIn("input[name='name']", {with: "Anders"})
     await browser.selectOption("select[name='cars']", {with: 'saab' })
     await browser.clickOnButton("input[value='Click me']")

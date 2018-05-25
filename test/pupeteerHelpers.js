@@ -12,7 +12,8 @@ class BrowserHelpers {
     const options = {
       headless: false,
       slowMo: 50,
-      timeout: 10000
+      timeout: 100000,
+      devtools: true
     };
 
     this.browser = await puppeteer.launch(options)
@@ -58,6 +59,10 @@ class BrowserHelpers {
   async takeScreenshot(){
     await this.page.screenshot({path: 'screenshot.png'});
     return;
+  }
+
+  async debugTheCode() {
+    await this.page.evaluate(() => {debugger;});
   }
 
 }
