@@ -5,6 +5,14 @@ The Training Wheels server 2 purposes. It provides a minimal test enviroment set
 
 The idea is to simplify the process of setting up a test enviroment with [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai) and [Puppeteer](https://www.npmjs.com/package/puppeteer). The package uses [Superstatic](https://www.npmjs.com/package/superstatic) as a local server. **Note: Tested on OSX but will probably work on Linux**
 
+## Installation
+
+In your npm project folder, run:
+
+```bash
+$ npm i e2e_training_wheels --save-dev
+```
+
 ## Usage
 
 Create a `features` folder in you project. 
@@ -24,8 +32,8 @@ Create a Mocha configuration file in the `features` folder (`mocha.opts`).
 Add the following scripts to `package.json`:
 
 ```json
-"scripts": {
-    "test": "superstatic src -p 8080 & mocha test/configuration.js --config features/mocha.opts test ; PORT=8080 npm run stop-test-server ",
+  "scripts": {
+    "test": "superstatic src -p 8080 & mocha --config features/mocha.opts features ; PORT=8080 npm run stop-test-server ",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   }

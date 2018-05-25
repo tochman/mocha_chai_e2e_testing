@@ -32,13 +32,11 @@ class BrowserHelpers {
   }
 
   async fillIn(selector, options) {
-    await this.page.waitForSelector(selector)
     this.inputElement = await this.page.$(selector)
     await this.inputElement.type(options.with)
   }
 
   async clickOnButton(selector) {
-    await this.page.waitForSelector(selector)
     await this.page.click(selector)
   }
 

@@ -12,8 +12,8 @@ describe('sample UI test', () => {
     await browser.page.reload();
   });
 
-  after(async () => {
-    await browser.close();
+  after( () => {
+    browser.close();
   });
 
   it('should have the correct page title', async () => {
