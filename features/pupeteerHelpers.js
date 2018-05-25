@@ -54,7 +54,15 @@ class BrowserHelpers {
   }
 
   async selectOption(selector, options){
-    await this.page.select(selector, options.with);
+    await this.page.select(selector, options.option);
+  }
+
+  async selectCheckBox(element) {
+    await this.page.click(element);
+  }
+
+  async selectRadioButton(element) {
+    await this.page.click(element);
   }
 
   async takeScreenshot(){

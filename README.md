@@ -65,16 +65,18 @@ describe('sample UI test', () => {
 
 ## Available helpers
 
-* `browser.getContent()`
-* `browser.fillIn()` 
-* `browser.clickOnButton()`
-* `browser.getElement()`
-* `browser.selectOption()`
+* `browser.getContent(element)`
+* `browser.fillIn(element, {with: string})` 
+* `browser.clickOnButton(element)`
+* `browser.getElement(element)`
+* `browser.selectOption(element, {option: string})`
+* `browese.selectCheckBox(element)`
+* `browser.selectRadioButton(element)`
 * `browser.debugTheCode()`
 
 ## Examples
 
-### `fillIn`
+### `browser.fillIn(element, {with: string})` 
 
 Allows you to fill in an input field with a value. Takes 2 arguments to identify the element and pass in the value to set.
 
@@ -90,21 +92,35 @@ Identifing an input field by `name`:
 await browser.fillIn("input[name='the-name']", {with: "Whatever value"})
 ```
 
-### `getContent`
+### `browser.getContent(element)`
 
 Allows you to get the text value of an element. 
 
 [ToDo: Write instructions]
 
-### `clickOnButton`
+### `browser.clickOnButton(element)`
 
 Allows you to click on a button or link
+
 [ToDo: Write instructions]
 
 
-### `selectOption`
+### `browser.selectOption(element, {option: string})`
 
 Allows you to select an option from a select tag
+
+[ToDo: Write instructions]
+
+### `browese.selectCheckBox(element)`
+
+Allows you to check a checkbox
+
+[ToDo: Write instructions]
+
+### `browser.selectRadioButton(element)`
+
+Allows you to select a radiobutton
+
 [ToDo: Write instructions]
 
 ## Debugging

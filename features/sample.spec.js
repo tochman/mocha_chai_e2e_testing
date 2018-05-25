@@ -41,9 +41,17 @@ describe('sample UI test', () => {
 
   it('should display selected car in message', async () => {
     await browser.fillIn("input[name='name']", {with: "Anders"})
-    await browser.selectOption("select[name='cars']", {with: 'saab' })
+    await browser.selectOption("select[name='cars']", {option: 'saab' })
     await browser.clickOnButton("input[value='Click me']")
     let content = await browser.getContent("div[id='output']")
     expect(content).to.eql('Hello Anders, you selected an Saab');
+  });
+
+  it('displays Subscription message', async () => {
+    await browser.selectCheckBox("input[id='subscribe']")
+    await browser.selectRadioButton("input[id='radio-button']")
+    await browser.clickOnButton("input[value='Subscribe']")
+    let content = await browser.getContent("div[id='subscription-text']")
+    expect(content).to.contain('Alright!');
   });
 });

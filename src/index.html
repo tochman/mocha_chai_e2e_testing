@@ -8,7 +8,7 @@
   <h1>Page Title</h1>
   <p class='main-content'>Some paragraph text</p>
 
-  <form id="my-form" action="#">
+  <form id="my-form">
       <input type="text" placeholder="Name" name="name">
       <select name="cars">
         <option value="volvo">Volvo</option>
@@ -17,6 +17,22 @@
         <option value="audi">Audi</option>
       </select>
       <input type="submit" value="Click me">
+  </form>
+
+  <form id="subscription-form">
+    <div>
+      <input type="checkbox" id="subscribe" name="subscribe" value="newsletter">
+      <label for="subscribeNews">Subscribe to newsletter?</label>
+    </div>
+    <div>
+      <input type="submit" value="Subscribe">
+    </div>
+    <div>
+        <input type="radio" id="radio-button">
+    </div>
+    <div id="subscription-text" style="display: none;">
+        <p>Alright!</p>
+    </div>
   </form>
 
   <script>
@@ -34,7 +50,21 @@
         }
         div.setAttribute('id', 'output');
         document.body.appendChild(div);
+
       });
+
+        const subscriptionForm = document.getElementById('subscription-form');
+        subscriptionForm.addEventListener("submit", event => {
+            event.preventDefault();
+            const checkBox = document.getElementById('subscribe')
+            let text = document.getElementById("subscription-text");
+            if (checkBox.checked == true){
+                text.style.display = "block";
+             } else {
+                text.style.display = "none";
+            }
+        })
+
   </script> 
 </body>
 </html>
