@@ -2,7 +2,7 @@
   "name": "e2e_training_wheels",
   "version": "0.0.7",
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
-  "main": "test/pupeteerHelpers.js",
+  "main": "features/pupeteerHelpers.js",
   "scripts": {
     "test": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server ",
     "server": "superstatic src -p 3000",
