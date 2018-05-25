@@ -1,6 +1,6 @@
 {
   "name": "e2e_training_wheels",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
   "main": "test/pupeteerHelpers.js",
   "scripts": {
