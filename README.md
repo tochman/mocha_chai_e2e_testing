@@ -9,7 +9,7 @@ The idea is to simplify the process of setting up a test enviroment with [Mocha]
 
 In your npm project folder, run:
 
-```bash
+```
 $ npm i e2e_training_wheels --save-dev
 ```
 

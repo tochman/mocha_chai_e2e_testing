@@ -40,6 +40,7 @@ describe('sample UI test', () => {
   });
 
   it('should display selected car in message', async () => {
+    await browser.debugTheCode();
     await browser.fillIn("input[name='name']", {with: "Anders"})
     await browser.selectOption("select[name='cars']", {with: 'saab' })
     await browser.clickOnButton("input[value='Click me']")

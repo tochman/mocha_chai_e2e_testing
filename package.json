@@ -4,7 +4,7 @@
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
   "main": "test/pupeteerHelpers.js",
   "scripts": {
-    "test": "superstatic src -p 8080 & mocha test/configuration.js --config test/mocha.opts test ; PORT=8080 npm run stop-test-server ",
+    "test": "superstatic src -p 8080 & mocha --config test/mocha.opts test ; PORT=8080 npm run stop-test-server ",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
