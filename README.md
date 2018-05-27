@@ -15,10 +15,17 @@ $ npm i e2e_training_wheels --save-dev
 
 ## Usage
 
-Create a `features` folder in you project. 
 
-```bash
-$ mkdir features
+
+```json
+"scripts": {
+    "test": "npm run features && npm run specs",
+    "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server ",
+    "specs": "mocha --recursive  --reporter=spec spec",
+    "server": "superstatic src -p 3000",
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
+  }
+
 ```
 
 Add the following scripts to `package.json`:
@@ -31,9 +38,13 @@ Add the following scripts to `package.json`:
   }
 ```
 
-This setup requires your code to reside in a forder called `src` and your tests in `features`.
+This setup requires your code to reside in a forder called `src` and your tests in  two separate folders. We will have our acceptance tests in the `features` folder, and our unit tests in the `spec` folder. Note: you are free to change these folder names if you like but will have to modify the scripts .
 
+Create a `features` folder in you project. 
 
+```bash
+$ mkdir features
+```
 
 Create a test file: `$ touch index.feature.js` and use the following setup:
 

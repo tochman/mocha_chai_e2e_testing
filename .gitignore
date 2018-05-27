@@ -1,6 +1,8 @@
 node_modules
 .DS_Store
 .cache
-.mocha-puppeteer
+src
+features/sample_helpers.js
+
 
 *.png
