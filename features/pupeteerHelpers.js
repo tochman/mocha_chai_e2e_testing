@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 
+
 class BrowserHelpers {
   constructor() { }
 

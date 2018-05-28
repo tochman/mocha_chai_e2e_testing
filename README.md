@@ -41,7 +41,7 @@ The command `npm run features` will start a local webserver, launch Chrome and r
 
 If you execute `npm test` in your terminal, both your acceptance tests and unit tests will be run.
 
-### Adding Unint specs
+### Adding Unit specs
 
 Create a `spec` folder in you project. 
 
@@ -61,7 +61,7 @@ describe('sample spec', () => {
 })
 ```
 
-### Adding acceptance tests
+### Adding Acceptance tests
 
 Create a `features` folder in you project. 
 
@@ -90,7 +90,7 @@ describe('sample UI test', () => {
     await browser.close();
   });
 
-  it('your test message', async () => {
+  it('/* description inserted here */', async () => {
     //  Write tour scenario  
   });
 });
@@ -195,3 +195,7 @@ Set breakpoint in code:
 ```javascript
 debugger;
 ```
+
+## Matchers
+
+[TODO: List matchers]
