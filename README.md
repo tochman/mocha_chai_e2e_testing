@@ -54,7 +54,7 @@ Create a test file: `$ touch sample.spec.js` and use the following setup:
 const { expect } = require('chai');
 
 describe('sample spec', () => {
-    it('expect true to eq true', async () => {
+    it('expect true to eq true', () => {
         expect(true).to.eql(true); 
     });
 

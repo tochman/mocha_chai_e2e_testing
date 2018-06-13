@@ -34,6 +34,7 @@
     "chai": "^4.1.2",
     "superstatic": "^5.0.1",
     "mocha": "^3.5.3",
-    "puppeteer": "^1.4.0"
+    "puppeteer": "^1.4.0",
+    "growl": "~> 1.10.0"
   }
 }
