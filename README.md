@@ -48,6 +48,10 @@ Create a `spec` folder in you project.
 ```bash
 $ mkdir spec
 ```
+
+
+
+
 Create a test file: `$ touch sample.spec.js` and use the following setup:
 
 ```javascript 

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const BrowserHelpers = require('./pupeteerHelpers.js')
+const BrowserHelpers = require('../dist/pupeteerHelpers.js')
 const browser = new BrowserHelpers()
 
 context('User requests index.html', () => {
