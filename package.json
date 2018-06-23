@@ -12,7 +12,7 @@
     "generate:spec-helper": "node dist/spec_helper.generator.js"
   },
   "bin": {
-    "e2e-generate": "dist/generators.js"
+    "training-wheeels": "dist/generators.js"
   },
   "postinstall": "npm link",
   "author": {

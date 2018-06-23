@@ -1,4 +1,8 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
+const { puts } = require('./config').puts
+const exec = require('child_process').exec;
 
 const dir = './specs';
 const fileName = "/spec.helper.js"
@@ -18,4 +22,6 @@ if (!fs.existsSync(dir)) {
 fs.writeFile(filepath, fileContent, (err) => {
     if (err) throw err;
     console.log('\x1b[33m%s\x1b[0m', `${fileName} was successfully saved`);
+    exec('npm link', puts)
+
 });

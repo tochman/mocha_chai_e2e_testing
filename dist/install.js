@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var path = require('path');
-global.appRoot = path.resolve(__dirname);
-var fileName = 'package.json';
-var relativePath = '/../'
-var file = require(appRoot + relativePath + fileName);
+const { global } = require('./config')
+const fs = require('fs');
+const fileName = 'package.json';
+const file = require(global.appRoot + fileName);
+
 
 // Set up packeage specific scripts
 // Note that this overwrites everything in the 'scripts' key
@@ -18,7 +17,12 @@ const scripts = {
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
 
 }
+
+const bin = {
+    "training-wheels": "node_modules/e2e_training_wheels/dist/generators.js"
+}
 file.scripts = scripts
+file.bin = bin
 
 fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     if (err) return console.log(err);

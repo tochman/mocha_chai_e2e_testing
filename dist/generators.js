@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-
-var sys = require('util')
-var exec = require('child_process').exec;
+const exec = require('child_process').exec
+const global = require('./dist/config')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
 
@@ -51,12 +49,8 @@ if (options.feature) {
 }
 
 if (options.configure === true) {
-    console.log('do')
-    // run node install.js'
-    function puts(error, stdout, stderr) { console.log(stdout) }
-    exec('node dist/install.js ', puts)
-    exec('node dist/spec_helper.generator.js', puts)
-
+    exec('node node_modules/e2e_training_wheels/dist/install.js ', global.puts)
+    exec('node node_modules/e2e_training_wheels/dist/spec_helper.generator.js', global.puts)
 }
 
 if (options.help) {
@@ -68,6 +62,10 @@ if (options.help) {
         {
             header: 'Options',
             optionList: optionDefinitions
+        },
+        {
+            header: 'Alias commands',
+            content: 'use "training-wheels <flag>"'
         },
         {
             content: 'Project home: {underline https://www.npmjs.com/package/e2e_training_wheels}'
