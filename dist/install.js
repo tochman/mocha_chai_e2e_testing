@@ -29,12 +29,6 @@ fs.readFile('./dist/templates/spec.helper.template.txt', function read(err, data
     });
 });
 
-let oldWay = "const fs = require('fs'); \n"
-helperFileContent += "const chai = require('chai'); \n"
-helperFileContent += "global.expect = chai.expect; \n"
-helperFileContent += "// your custom confuguration..."
-
-
 // Set up packeage specific scripts
 // Note that this overwrites everything in the 'scripts' key
 // TODO: Refactor to amending the key

@@ -11,7 +11,7 @@
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
   "bin": {
-    "training-wheels": "node_modules/e2e_training_wheels/dist/generators.js"
+    "training-wheels": "dist/generators.js"
   },
   "postinstall": "npm link",
   "author": {
