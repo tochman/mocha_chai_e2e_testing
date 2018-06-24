@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const exec = require('child_process').exec
-const global = require('./dist/config')
+const { global } = require('./config')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
 
@@ -45,12 +45,36 @@ if (options.spec) {
 }
 
 if (options.feature) {
-    console.log(`Creating a feature file named: "${options.feature}.js"`)
+
+    let featureFileContent 
+    fs.readFile('./dist/templates/feature.template.txt', function read(err, data) {
+        if (err) {
+            console.log(err);
+        }
+        featureFileContent = data;
+        fs.access(global.featureDir, error => {
+            if (error && error.code === 'ENOENT') {
+                fs.mkdir(global.featureDir);
+            }
+            const filePath = global.featureDir + '/' + options.feature + '.feature.js'
+            fs.writeFile(filePath, featureFileContent, (err) => {
+                if (err) throw err;
+                console.log(`Created a feature file named: "${options.feature}.js"`)
+    
+            });
+    
+        });
+    });
+
+    
+
+
+
 }
 
 if (options.configure === true) {
-    exec('node node_modules/e2e_training_wheels/dist/install.js ', global.puts)
-    exec('node node_modules/e2e_training_wheels/dist/spec_helper.generator.js', global.puts)
+    exec('node dist/install.js ', global.puts)
+    exec('npm link', global.puts)
 }
 
 if (options.help) {

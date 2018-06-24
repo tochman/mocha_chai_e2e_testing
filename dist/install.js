@@ -1,9 +1,19 @@
 #!/usr/bin/env node
 
 const { global } = require('./config')
+const exec = require('child_process').exec;
+
 const fs = require('fs');
 const fileName = 'package.json';
 const file = require(global.appRoot + fileName);
+
+const specDir = './specs';
+const helperFileName = "/spec.helper.js"
+const helperFilePath = specDir + helperFileName ;
+let helperFileContent = "const fs = require('fs'); \n"
+helperFileContent += "const chai = require('chai'); \n"
+helperFileContent += "global.expect = chai.expect; \n"
+helperFileContent += "// your custom confuguration..."
 
 
 // Set up packeage specific scripts
@@ -29,3 +39,14 @@ fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     console.log('\x1b[33m%s\x1b[0m', `Updated ${fileName} with package specific scripts`);
 });
 
+if (!fs.existsSync(specDir)) {
+    fs.mkdirSync(specDir);
+    console.log('\x1b[33m%s\x1b[0m', `Added folder: ${specDir}`);
+} else {
+    console.log('\x1b[31m%s\x1b[0m', `WARNING: Folder ${specDir} already exist. Moving on...`);
+}
+
+fs.writeFile(helperFilePath, helperFileContent, (err) => {
+    if (err) throw err;
+    console.log('\x1b[33m%s\x1b[0m', `${helperFileName} was successfully saved`);
+});

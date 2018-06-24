@@ -8,11 +8,10 @@
     "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server ",
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
-    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill",
-    "generate:spec-helper": "node dist/spec_helper.generator.js"
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
   "bin": {
-    "training-wheeels": "dist/generators.js"
+    "training-wheels": "node_modules/e2e_training_wheels/dist/generators.js"
   },
   "postinstall": "npm link",
   "author": {
