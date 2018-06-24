@@ -1,0 +1,25 @@
+// make sure to require the Spec Helper
+// i.e.:
+const {  } = require('./spec.helper')
+// If you exported any modules in your Spec Helper, make sure you
+// declare them as well
+// i.e.:
+// const { FizzBuzz } = require('./spec.helper')
+
+
+describe('Your test case description', () => {
+    // Setup
+    // declare your variabels i.e.:
+    //let fizzBuzz
+
+    beforeEach(() => {
+        // assign values to your variables
+        //fizzBuzz = new FizzBuzz
+    });
+
+    it('returns "fizz" if number is divisable by 3', () => {
+        // Execute code if needed
+        // add an assertion using the `expect` keyword
+        // expect(fizzBuzz.check(3)).to.eql(fizz)
+    })
+})

@@ -40,13 +40,29 @@ const options = commandLineArgs(optionDefinitions)
 
 console.log(options)
 if (options.spec) {
-    console.log(`Creating spec file named: "${options.spec}.js"`)
+    let specFileContent
+    fs.readFile('./dist/templates/spec.template.txt', function read(err, data) {
+        if (err) {
+            console.log(err);
+        }
+        specFileContent = data;
+        fs.access(global.specDir, error => {
+            if (error && error.code === 'ENOENT') {
+                fs.mkdir(global.specDir);
+            }
+            const filePath = global.specDir + '/' + options.spec + '.spec.js'
+            fs.writeFile(filePath, specFileContent, (err) => {
+                if (err) throw err;
+                console.log(`Created a spec file named: "${options.spec}.spec.js"`)
+            });
 
+        });
+    });
 }
 
 if (options.feature) {
 
-    let featureFileContent 
+    let featureFileContent
     fs.readFile('./dist/templates/feature.template.txt', function read(err, data) {
         if (err) {
             console.log(err);
@@ -59,17 +75,12 @@ if (options.feature) {
             const filePath = global.featureDir + '/' + options.feature + '.feature.js'
             fs.writeFile(filePath, featureFileContent, (err) => {
                 if (err) throw err;
-                console.log(`Created a feature file named: "${options.feature}.js"`)
-    
+                console.log(`Created a feature file named: "${options.feature}.feature.js"`)
+
             });
-    
+
         });
     });
-
-    
-
-
-
 }
 
 if (options.configure === true) {
@@ -88,8 +99,8 @@ if (options.help) {
             optionList: optionDefinitions
         },
         {
-            header: 'Alias commands',
-            content: 'use "training-wheels <flag>"'
+            header: 'Alias commands:',
+            content: 'use "$ training-wheels <command> <flag>"'
         },
         {
             content: 'Project home: {underline https://www.npmjs.com/package/e2e_training_wheels}'

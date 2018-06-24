@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const { global } = require('./config')
-const exec = require('child_process').exec;
 
 const fs = require('fs');
 const fileName = 'package.json';
@@ -9,8 +8,28 @@ const file = require(global.appRoot + fileName);
 
 const specDir = './specs';
 const helperFileName = "/spec.helper.js"
-const helperFilePath = specDir + helperFileName ;
-let helperFileContent = "const fs = require('fs'); \n"
+const helperFilePath = specDir + helperFileName;
+
+let helperFileContent
+fs.readFile('./dist/templates/spec.helper.template.txt', function read(err, data) {
+    if (err) {
+        throw err;
+    }
+    helperFileContent = data;
+    fs.access(specDir, error => {
+        if (error && error.code === 'ENOENT') {
+            fs.mkdir(specDir);
+            console.log('\x1b[33m%s\x1b[0m', `Added folder: ${specDir}`);
+        }
+        fs.writeFile(helperFilePath, helperFileContent, (err) => {
+            console.log('\x1b[31m%s\x1b[0m', `WARNING: Folder ${specDir} already exist. Moving on...`);
+            if (err) throw err;
+            console.log('\x1b[33m%s\x1b[0m', `${helperFileName} was successfully saved`);
+        });
+    });
+});
+
+let oldWay = "const fs = require('fs'); \n"
 helperFileContent += "const chai = require('chai'); \n"
 helperFileContent += "global.expect = chai.expect; \n"
 helperFileContent += "// your custom confuguration..."
@@ -37,16 +56,4 @@ file.bin = bin
 fs.writeFile(fileName, JSON.stringify(file, null, 2), function (err) {
     if (err) return console.log(err);
     console.log('\x1b[33m%s\x1b[0m', `Updated ${fileName} with package specific scripts`);
-});
-
-if (!fs.existsSync(specDir)) {
-    fs.mkdirSync(specDir);
-    console.log('\x1b[33m%s\x1b[0m', `Added folder: ${specDir}`);
-} else {
-    console.log('\x1b[31m%s\x1b[0m', `WARNING: Folder ${specDir} already exist. Moving on...`);
-}
-
-fs.writeFile(helperFilePath, helperFileContent, (err) => {
-    if (err) throw err;
-    console.log('\x1b[33m%s\x1b[0m', `${helperFileName} was successfully saved`);
 });
