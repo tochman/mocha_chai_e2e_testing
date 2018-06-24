@@ -6,3 +6,6 @@ features/sample_helpers.js
 
 
 *.png
+
+features
+specs
