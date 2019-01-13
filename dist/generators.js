@@ -38,7 +38,8 @@ const optionDefinitions = [
 
 const options = commandLineArgs(optionDefinitions)
 
-console.log(options)
+console.log('Globar spec dir' + global.specDir)
+console.log('Globar feature dir' + global.featureDir)
 if (options.spec) {
     let specFileContent
     fs.readFile('./dist/templates/spec.template.txt', function read(err, data) {

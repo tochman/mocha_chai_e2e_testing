@@ -9,3 +9,5 @@ features/sample_helpers.js
 
 features
 specs
+
+*.tgz
