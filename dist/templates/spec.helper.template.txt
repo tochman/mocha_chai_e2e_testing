@@ -1,12 +1,4 @@
-const fs = require('fs');
 const chai = require('chai');
+const BrowserHelpers = require('e2e_training_wheels')
+global.browser = new BrowserHelpers()
 global.expect = chai.expect;
-
-// Load content of your native js files (if you want to test them)
-// i.e.
-// let fizzBuzz = fs.readFileSync('./src/js/fizz-buzz.js');
-
-// export your named functions/prototypes as modules
-// i.e. (make sure you add a new line just in case your implementation
-// do not have a trailing semicolon)
-// eval( fizzBuzz + `\nexports.FizzBuzz = FizzBuzz;`)

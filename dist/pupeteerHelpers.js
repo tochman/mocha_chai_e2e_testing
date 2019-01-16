@@ -7,7 +7,6 @@ class BrowserHelpers {
   async init() {
     await this.newBrowser()
     await this.newPage()
-    await this.page.on('console', msg => console.log('PAGE LOG:', msg.text()));
   }
 
   async newBrowser() {
@@ -16,7 +15,7 @@ class BrowserHelpers {
       slowMo: 50,
       timeout: 100000,
       devtools: true,
-      args: ['--no-sandbox','--disable-setuid-sandbox', '--disable-popup-blocking', '--disable-infobars'],
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-popup-blocking', '--disable-infobars'],
       ignoreHTTPSErrors: true,
     };
 
@@ -54,7 +53,7 @@ class BrowserHelpers {
     return requestedElement;
   }
 
-  async selectOption(selector, options){
+  async selectOption(selector, options) {
     await this.page.select(selector, options.option);
   }
 
@@ -66,13 +65,13 @@ class BrowserHelpers {
     await this.page.click(element);
   }
 
-  async takeScreenshot(){
-    await this.page.screenshot({path: 'screenshot.png'});
+  async takeScreenshot() {
+    await this.page.screenshot({ path: 'screenshot.png' });
     return;
   }
 
   async debugTheCode() {
-    await this.page.evaluate(() => {debugger;});
+    await this.page.evaluate(() => { debugger; });
   }
 
 }

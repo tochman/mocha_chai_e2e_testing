@@ -5,7 +5,7 @@
   "main": "dist/pupeteerHelpers.js",
   "scripts": {
     "test": "npm run features && npm run specs",
-    "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server ",
+    "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server",
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
@@ -42,6 +42,7 @@
     "superstatic": "^6.0.4"
   },
   "bin": {
-    "training-wheels": "dist/generators.js"
+    "training-wheels:generate": "./dist/generators.js",
+    "training-wheels:install": "./dist/install.js"
   }
 }
