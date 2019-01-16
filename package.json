@@ -1,6 +1,6 @@
 {
   "name": "e2e_training_wheels",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
   "main": "dist/pupeteerHelpers.js",
   "scripts": {
@@ -8,9 +8,10 @@
     "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server",
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
-    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill",
+    "postinstall": "node ./dist/install.js && npm link"
+
   },
-  "postinstall": "npm link",
   "author": {
     "name": "Thomas Ochman",
     "email": "thomas@craftacademy.se",
