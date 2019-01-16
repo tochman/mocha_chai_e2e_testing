@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const execSync = require('child_process').execSync
-const { global } = require('./config')
+require('./config')
+const os = require('os');
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
 
@@ -38,11 +38,10 @@ const optionDefinitions = [
 
 const options = commandLineArgs(optionDefinitions)
 
-console.log('Globar spec dir' + global.specDir)
-console.log('Globar feature dir' + global.featureDir)
+
 if (options.spec) {
     let specFileContent
-    fs.readFile('./dist/templates/spec.template.txt', function read(err, data) {
+    fs.readFile(resolveOwn('dist/templates/spec.template.txt'), function read(err, data) {
         if (err) {
             console.log(err);
         }
@@ -52,7 +51,7 @@ if (options.spec) {
                 fs.mkdir(global.specDir);
             }
             const filePath = global.specDir + '/' + options.spec + '.spec.js'
-            fs.writeFile(filePath, specFileContent, (err) => {
+            fs.writeFile(filePath, specFileContent, { flag: 'w' }, (err) => {
                 if (err) throw err;
                 console.log(`Created a spec file named: "${options.spec}.spec.js"`)
             });
@@ -64,7 +63,7 @@ if (options.spec) {
 if (options.feature) {
 
     let featureFileContent
-    fs.readFile('./dist/templates/feature.template.txt', function read(err, data) {
+    fs.readFile(resolveOwn('dist/templates/feature.template.txt'), function read(err, data) {
         if (err) {
             console.log(err);
         }
@@ -85,8 +84,25 @@ if (options.feature) {
 }
 
 if (options.configure === true) {
-    execSync('node dist/install.js ', global.puts)
-    execSync('npm link', global.puts)
+    appPackage.scripts = {
+        test: 'npm run features && npm run specs',
+        features: 'superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server',
+        specs: 'mocha --recursive  --reporter=spec spec',
+        server: 'superstatic src -p 3000',
+        'stop-test-server': 'lsof -ti tcp:$PORT | xargs kill',
+    };
+
+    appPackage.bin = {
+        'training-wheels:generate': 'node_modules/e2e_training_wheels/dist/generators.js',
+        'training-wheels:install': 'node_modules/e2e_training_wheels/dist/install.js'
+    }
+
+
+
+    fs.writeFileSync(
+        path.join(resolveApp('package.json')),
+        JSON.stringify(appPackage, null, 2) + os.EOL
+    );
 }
 
 if (options.help) {

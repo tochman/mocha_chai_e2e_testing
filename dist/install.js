@@ -33,6 +33,11 @@ appPackage.scripts = {
     'stop-test-server': 'lsof -ti tcp:$PORT | xargs kill',
 };
 
+appPackage.bin = {
+    "training-wheels:generate": "node_modules/e2e_training_wheels/dist/generators.js",
+    "training-wheels:install": "node_modules/e2e_training_wheels/dist/install.js"
+}
+
 fs.writeFileSync(
     path.join(resolveApp('package.json')),
     JSON.stringify(appPackage, null, 2) + os.EOL
