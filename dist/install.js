@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 'use strict';
-
+require('./config')
 const os = require('os');
-const config = require('./config')
-const originalDirectory = process.cwd();
 
 function ensureSlash(inputPath, needsSlash) {
     const hasSlash = inputPath.endsWith('/');
@@ -19,12 +17,7 @@ function ensureSlash(inputPath, needsSlash) {
 
 console.log('\x1b[33m%s\x1b[0m', `Running e2e Training Wheels Configuration...`);
 
-// Set up package specific scripts
-// Note that this overwrites everything in the 'scripts' key
-// TODO: Refactor to amending the key
-
-// let appPackage = JSON.parse(appPackageJson)
-
+// Set up package specific scripts and CLI commands
 appPackage.scripts = {
     test: 'npm run features && npm run specs',
     features: 'superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server',

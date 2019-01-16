@@ -50,8 +50,8 @@ if (options.spec) {
             if (error && error.code === 'ENOENT') {
                 fs.mkdir(global.specDir);
             }
-            const filePath = global.specDir + '/' + options.spec + '.spec.js'
-            fs.writeFile(filePath, specFileContent, { flag: 'w' }, (err) => {
+            const filePath = resolveApp('/spec/' + options.spec + '.spec.js')
+            fs.writeFile('.' + filePath, specFileContent, { flag: 'w' }, (err) => {
                 if (err) throw err;
                 console.log(`Created a spec file named: "${options.spec}.spec.js"`)
             });
@@ -72,8 +72,8 @@ if (options.feature) {
             if (error && error.code === 'ENOENT') {
                 fs.mkdir(global.featureDir);
             }
-            const filePath = global.featureDir + '/' + options.feature + '.feature.js'
-            fs.writeFile(filePath, featureFileContent, (err) => {
+            const filePath = resolveApp('/features/' + options.feature + '.feature.js')
+            fs.writeFile('.' + filePath, featureFileContent, (err) => {
                 if (err) throw err;
                 console.log(`Created a feature file named: "${options.feature}.feature.js"`)
 
@@ -96,8 +96,6 @@ if (options.configure === true) {
         'training-wheels:generate': 'node_modules/e2e_training_wheels/dist/generators.js',
         'training-wheels:install': 'node_modules/e2e_training_wheels/dist/install.js'
     }
-
-
 
     fs.writeFileSync(
         path.join(resolveApp('package.json')),
