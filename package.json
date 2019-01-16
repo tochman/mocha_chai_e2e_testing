@@ -1,6 +1,6 @@
 {
   "name": "e2e_training_wheels",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
   "main": "dist/pupeteerHelpers.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill",
-    "postinstall": "node ./dist/install.js && npm link"
+    "postinstall": "node node_modules/e2e_training_wheels/dist/install.js && npm link"
 
   },
   "author": {
