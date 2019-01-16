@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const exec = require('child_process').exec
+const execSync = require('child_process').execSync
 const { global } = require('./config')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
@@ -85,8 +85,8 @@ if (options.feature) {
 }
 
 if (options.configure === true) {
-    exec('node dist/install.js ', global.puts)
-    exec('npm link', global.puts)
+    execSync('node dist/install.js ', global.puts)
+    execSync('npm link', global.puts)
 }
 
 if (options.help) {

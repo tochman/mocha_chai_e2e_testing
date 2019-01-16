@@ -108,7 +108,7 @@ describe('sample UI test', () => {
 * `browser.clickOnButton(element)`
 * `browser.getElement(element)`
 * `browser.selectOption(element, {option: string})`
-* `browese.selectCheckBox(element)`
+* `browser.selectCheckBox(element)`
 * `browser.selectRadioButton(element)`
 * `browser.debugTheCode()`
 
@@ -163,7 +163,7 @@ await browser.selectOption("select[name='subscription-type']", {option: 'yearly'
 
 ```
 
-### `browese.selectCheckBox(element)`
+### `browser.selectCheckBox(element)`
 
 Allows you to check a checkbox
 
