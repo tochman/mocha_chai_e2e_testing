@@ -2,7 +2,7 @@ global.fs = require('fs');
 global.path = require('path');
 global.appRoot = require('app-root-path').toString();
 global.appDirectory = path.relative(process.cwd(), global.appRoot);
-global.resolveApp = relativePath => path.resolve(global.appDirectory, relativePath);
+global.resolveApp = relativePath => path.resolve(global.appRoot, relativePath);
 global.resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
 global.helperFile = global.appDirectory +  'spec.helper.js';

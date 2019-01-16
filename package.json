@@ -10,7 +10,6 @@
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill",
     "postinstall": "node ./dist/install.js && npm link"
-
   },
   "author": {
     "name": "Thomas Ochman",
