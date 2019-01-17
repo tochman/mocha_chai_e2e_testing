@@ -1,15 +1,14 @@
 {
   "name": "e2e_training_wheels",
-  "version": "0.0.26",
-  "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer",
+  "version": "0.0.27",
+  "description": "A set of helpers to sipmlify acceptance (e2e) testing using Chai, Mocha and Pupeteer. Can also be used for Unit testing. ;-)",
   "main": "dist/pupeteerHelpers.js",
   "scripts": {
     "test": "npm run features && npm run specs",
     "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features ; PORT=8080 npm run stop-test-server",
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
-    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill",
-    "postinstall": "node ./dist/install.js && npm link"
+    "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
   },
   "author": {
     "name": "Thomas Ochman",
@@ -42,7 +41,7 @@
     "superstatic": "^6.0.4"
   },
   "bin": {
-    "training-wheels:generate": "./dist/generators.js",
-    "training-wheels:install": "./dist/install.js"
+    "training-wheels:generate": "node_modules/e2e_training_wheels/dist/generators.js",
+    "training-wheels:install": "node_modules/e2e_training_wheels/dist/install.js"
   }
 }

@@ -140,6 +140,24 @@ fs.readFile(resolveOwn('dist/templates/index.html.template.txt'), (err, data) =>
             fs.mkdirSync(srcDir.replace('./', ''), error => {
                 console.log('\x1b[33m%s\x1b[0m', `Added folder: ${srcDir}`);
             });
+            fs.mkdir(srcDir.replace('./', '') + '/css', error => {
+                if (error) {
+                    throw err;
+                }
+                console.log('\x1b[33m%s\x1b[0m', `Added folder: ${srcDir.replace('./', '') + '/css'}`);
+            });
+            fs.mkdir(srcDir.replace('./', '') + '/img', error => {
+                if (error) {
+                    throw err;
+                }
+                console.log('\x1b[33m%s\x1b[0m', `Added folder: ${srcDir.replace('./', '') + '/img'}`);
+            });
+            fs.mkdir(srcDir.replace('./', '') + '/js', error => {
+                if (error) {
+                    throw err;
+                }
+                console.log('\x1b[33m%s\x1b[0m', `Added folder: ${srcDir.replace('./', '') + '/js'}`);
+            });
         }
     
         fs.writeFile('.' + resolveApp(indexFile), indexFileContent, { flag: 'w' }, (err) => {
