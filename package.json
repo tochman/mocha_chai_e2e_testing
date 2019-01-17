@@ -27,6 +27,7 @@
     "Mocha",
     "Training",
     "Acceptance tests",
+    "e2e",
     "Testing"
   ],
   "license": "MIT",
