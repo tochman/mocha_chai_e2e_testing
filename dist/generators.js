@@ -18,7 +18,7 @@ const optionDefinitions = [
         name: 'configure',
         alias: 'c',
         type: Boolean,
-        description: 'configures "package.json" with the necessary scripts '
+        description: 'configures "package.json" with the necessary scripts (same as the "install.js" script).'
     },
     {
         name: 'feature',
@@ -112,10 +112,6 @@ if (options.help) {
         {
             header: 'Options',
             optionList: optionDefinitions
-        },
-        {
-            header: 'Alias commands:',
-            content: 'use "$ training-wheels <command> <flag>"'
         },
         {
             content: 'Project home: {underline https://www.npmjs.com/package/e2e_training_wheels}'
