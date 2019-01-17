@@ -1,11 +1,10 @@
 #### For educational purposes only
 # Acceptance Test Training Wheels
 
+The E2E Training Wheels serves 2 purposes. It provides a minimal test environment setup and a set of convenient helpers to be used in acceptance (end-2-end) tests. It's highly opinionated meaning that most of the setup is done for you to allow you to focus on the development process, rather than the configuration of the test environment. This package has been created to be used in computer training sessions.
 
 
-The E2E Training Wheels serves 2 purposes. It provides a minimal test enviroment setup and a set of convinient helpers to be used in acceptance (end-2-end) tests. It's highly opinionated meaning that most of the setup is done for you to allow you to focus the dovelopment pracess, rather than the cofiguration of the test enviroment. This package has been created to be used in computer training sessions.
-
-The idea is to simplify the process of setting up a test enviroment with [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai) and [Puppeteer](https://www.npmjs.com/package/puppeteer). The package uses [Superstatic](https://www.npmjs.com/package/superstatic) as a local server. **Note: Tested on OSX but will probably work on Linux**
+The idea is to simplify the process of setting up a test environment with [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai) and [Puppeteer](https://www.npmjs.com/package/puppeteer). The package uses [Superstatic](https://www.npmjs.com/package/superstatic) as a local server. **Note: Tested on OSX but will probably work on Linux**
 
 ## Installation
 
@@ -19,7 +18,7 @@ $ npm i e2e_training_wheels --save-dev
 
 ### Configuration
 
-You can use a script to configure the enviroment or you can set it up manually.
+You can use a script to configure the environment or you can set it up manually.
 
 #### Automatic setup
 
@@ -46,7 +45,7 @@ global.browser = new BrowserHelpers()
 global.expect = chai.expect;
 ```
 
-This setup requires your code to reside in a forder called `src` and your tests in  two separate folders. We will have our acceptance tests in the `features` folder, and our unit tests in the `spec` folder. Note: you are free to change these folder names if you like but will have to modify the scripts.
+This setup requires your code to reside in a forder called `src` and your tests in  two separate folders. We will have our acceptance tests in the `features` folder, and our unit tests in the `spec` folder. Note: you are free to change these folder names if you like, but you will have to modify the scripts.
 
 
 Add the following scripts to `package.json`:
@@ -265,4 +264,4 @@ debugger;
 
 ## Matchers
 
-[TODO: List matchers]
+We are using Chai matchers. The [API reference](https://www.chaijs.com/api/bdd/) is a great resource for more information
