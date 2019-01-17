@@ -1,5 +1,5 @@
 #### For educational/training purposes only
-![](./e2e_t_w.svg)
+![](https://raw.githubusercontent.com/tochman/mocha_chai_e2e_testing/HEAD/e2e_t_w.svg?sanitize=true)
 # End-To-End Testing Training Wheels
 
 The E2E Testing Training Wheels serves 2 purposes. It provides a minimal test environment setup and a set of convenient helpers to be used in acceptance (end-2-end) tests. Can also be used for Unit testing.
