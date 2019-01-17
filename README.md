@@ -1,5 +1,7 @@
 #### For educational purposes only
 # Acceptance Test Training Wheels
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing?ref=badge_shield)
+
 
 The E2E Training Wheels serves 2 purposes. It provides a minimal test environment setup and a set of convenient helpers to be used in acceptance (end-2-end) tests. It's highly opinionated meaning that most of the setup is done for you to allow you to focus on the development process, rather than the configuration of the test environment. This package has been created to be used in computer training sessions.
 
@@ -265,3 +267,6 @@ debugger;
 ## Matchers
 
 We are using Chai matchers. The [API reference](https://www.chaijs.com/api/bdd/) is a great resource for more information
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing?ref=badge_large)
