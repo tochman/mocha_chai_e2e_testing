@@ -17,10 +17,36 @@ $ npm i e2e_training_wheels --save-dev
 
 ## Usage
 
-### Test Runners
+### Configuration
 
-This setup requires your code to reside in a forder called `src` and your tests in  two separate folders. We will have our acceptance tests in the `features` folder, and our unit tests in the `spec` folder. Note: you are free to change these folder names if you like but will have to modify the scripts .
+You can use a script to configure the enviroment or you can set it up manually.
 
+#### Automatic setup
+
+Once the package is installed, run the following script in your terminal:
+
+```
+$ node ./node_modules/e2e_training_wheels/dist/install.js
+```
+
+And run the following command in the terminal:
+
+```bash
+$ npm link
+```
+
+#### Manual setup
+
+You need to add a file in the root folder that will load the necessary dependencies. Create a `spec.helper.js` file and add the following configuration:
+
+```js
+const chai = require('chai');
+const BrowserHelpers = require('e2e_training_wheels')
+global.browser = new BrowserHelpers()
+global.expect = chai.expect;
+```
+
+This setup requires your code to reside in a forder called `src` and your tests in  two separate folders. We will have our acceptance tests in the `features` folder, and our unit tests in the `spec` folder. Note: you are free to change these folder names if you like but will have to modify the scripts.
 
 
 Add the following scripts to `package.json`:
@@ -32,14 +58,21 @@ Add the following scripts to `package.json`:
     "specs": "mocha --recursive  --reporter=spec spec",
     "server": "superstatic src -p 3000",
     "stop-test-server": "lsof -ti tcp:$PORT | xargs kill"
+  },
+"bin": {
+    "training-wheels:generate": "node ./node_modules/e2e_training_wheels/dist/generators.js",
+    "training-wheels:install": "node ./node_modules/e2e_training_wheels/dist/install.js"
   }
-
 ```
-The command `npm run features` will start a local webserver, launch Chrome and run your acceptance tests. 
 
-`npm run specs` will run your unit tests.
+And run the following command in the terminal:
 
-If you execute `npm test` in your terminal, both your acceptance tests and unit tests will be run.
+```bash
+$ npm link
+```
+
+That will enable package specific commands you can use to scaffold various tests. Run `training-wheels:generate --help` to display all options. 
+
 
 ### Adding Unit specs
 
@@ -49,20 +82,37 @@ Create a `spec` folder in you project.
 $ mkdir spec
 ```
 
-
-
-
 Create a test file: `$ touch sample.spec.js` and use the following setup:
 
 ```javascript 
-const { expect } = require('chai');
+require('../spec.helper')
 
-describe('sample spec', () => {
-    it('expect true to eq true', () => {
-        expect(true).to.eql(true); 
+describe('Your test case description', () => {
+    // Setup
+    let array
+
+    beforeEach(() => {
+        // assign values to your variables
+        array = new Array(2, 3)
     });
 
+    it('add a descriptive test title', () => {
+        // Execute code if needed
+        const sum = array[0] + array[1]
+        // add an assertion using the `expect` keyword
+        expect(sum).to.eql(5)
+    })
+
+    describe('nested describe block', () => {
+
+      it('expect true to eq true', () => {
+          expect(true).to.eql(true); 
+      });
+
+    })
 })
+
+
 ```
 
 ### Adding Acceptance tests
@@ -76,30 +126,43 @@ $ mkdir features
 Create a test file: `$ touch index.feature.js` and use the following setup:
 
 ```javascript
-const { expect } = require('chai');
-const BrowserHelpers = require('e2e_training_wheels');
-const browser = new BrowserHelpers();
+require('../spec.helper');
 
-describe('sample UI test', () => {
-  before( async () => {
-    await browser.init();
-    await browser.visitPage('http://localhost:8080/');
+context('Your Description of the test scenario', () => {
+  // Initialize a browser and visit the server's root path
+  before(async () => {
+    await browser.init()
+    await browser.visitPage('http://localhost:8080/')
   });
 
+  // Reload before each test 
   beforeEach(async () => {
     await browser.page.reload();
   });
 
-  after(async () => {
-    await browser.close();
+  // Make sure the browser closes after the test is finished
+  after(() => {
+    browser.close();
   });
 
   it('/* description inserted here */', async () => {
     //  Write tour scenario  
   });
-});
 
+  // Example test
+  it('renders the correct page title', async () => {
+    expect(await browser.page.title()).to.eql('Puppeteer Mocha Scaffold');
+  });
+});
 ```
+
+## Running Tests
+
+The command `npm run features` will start a local webserver, launch Chrome and run your acceptance tests. 
+
+The command `npm run specs` will run your unit tests.
+
+If you execute `npm test` in your terminal, both your acceptance tests and unit tests will be run. 
 
 ## Available helpers
 

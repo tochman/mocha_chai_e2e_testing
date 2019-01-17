@@ -13,3 +13,5 @@ specs
 spec.helper.js
 
 *.tgz
+
+notes.txt

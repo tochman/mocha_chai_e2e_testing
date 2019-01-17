@@ -17,7 +17,7 @@ context('Your Description of the test scenario', () => {
     browser.close();
   });
 
-  // Exapmple test
+  // Example test
   it('renders the correct page title', async () => {
     expect(await browser.page.title()).to.eql('Puppeteer Mocha Scaffold');
   });

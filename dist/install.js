@@ -27,8 +27,8 @@ appPackage.scripts = {
 };
 
 appPackage.bin = {
-    "training-wheels:generate": "node_modules/e2e_training_wheels/dist/generators.js",
-    "training-wheels:install": "node_modules/e2e_training_wheels/dist/install.js"
+    "training-wheels:generate": "node ./node_modules/e2e_training_wheels/dist/generators.js",
+    "training-wheels:install": "node ./node_modules/e2e_training_wheels/dist/install.js"
 }
 
 fs.writeFileSync(
