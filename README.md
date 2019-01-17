@@ -1,10 +1,15 @@
-#### For educational purposes only
-# Acceptance Test Training Wheels
+#### For educational/training purposes only
+![](./e2e_t_w.svg)
+# End-To-End Testing Training Wheels
 
-The E2E Training Wheels serves 2 purposes. It provides a minimal test environment setup and a set of convenient helpers to be used in acceptance (end-2-end) tests. It's highly opinionated meaning that most of the setup is done for you to allow you to focus on the development process, rather than the configuration of the test environment. This package has been created to be used in computer training sessions.
+The E2E Testing Training Wheels serves 2 purposes. It provides a minimal test environment setup and a set of convenient helpers to be used in acceptance (end-2-end) tests. Can also be used for Unit testing.
+
+It's highly opinionated meaning that most of the setup is done for you to allow you to focus on the development process, rather than the configuration of the test environment. This package has been created to be used in computer training sessions but can serve you well if you want an easy and hassle-free configuration.
 
 
 The idea is to simplify the process of setting up a test environment with [Mocha](https://www.npmjs.com/package/mocha), [Chai](https://www.npmjs.com/package/chai) and [Puppeteer](https://www.npmjs.com/package/puppeteer). The package uses [Superstatic](https://www.npmjs.com/package/superstatic) as a local server. **Note: Tested on OSX but will probably work on Linux**
+
+If you are starting out with testing your applications and would like to see a short introduction on how to set up End-To-End Testing Training Wheels in a project, [take a look at this video](https://youtu.be/9YEp5hNrUYc). 
 
 ## Installation
 
@@ -264,4 +269,44 @@ debugger;
 
 ## Matchers
 
-We are using Chai matchers. The [API reference](https://www.chaijs.com/api/bdd/) is a great resource for more information
+We are using Chai matchers. The [API reference](https://www.chaijs.com/api/bdd/) is a great resource for more information.
+
+----------
+  
+## Unit testing 
+
+**This section is WIP**
+
+If you are planning on testing your Vanilla Javascript code (unit tests), there are a few gothchas to consider. Consider this example
+
+*my_js_code.js*
+```javascript
+function myFunction() {
+  console.log('Hello World')
+}
+```
+
+You have modify your code so it can be included in both the browser and Node.
+
+*my_js_code.js*
+```javascript
+function myFunction() {
+  console.log('Hello World')
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = myFunction;
+}
+```
+
+Then, in order to make it available in the E2E Testing Training Wheel configuration, you need to `require` this module in your `spec.helper.js`:
+
+*spec.helper.js*
+```javascript
+global.myFunction = require('./path/to/my_js_code')
+
+```
+
+This is the current setup. Please report any issues should you have problems with it. 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftochman%2Fmocha_chai_e2e_testing?ref=badge_large)
